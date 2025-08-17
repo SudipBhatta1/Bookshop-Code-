@@ -1,0 +1,2 @@
+1	math	ram	sudip	100
+2a	math	ram	hari	200
