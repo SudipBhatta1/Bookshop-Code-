@@ -8,6 +8,7 @@
 #include <cstring>
 #include <cstdlib> 
 #include <sstream>
+
 using namespace std;
 
 class books {
@@ -84,29 +85,8 @@ void login() {
         string login_username;
         cin >> login_username;
         cout << "Enter password: ";
-        
-        char password[20];
-        int i = 0;
-        char ch;
-
-        while (i < 20) {
-            ch = _getch(); 
-
-            if (ch == 13) { 
-                break;
-            } else if (ch == 8) { 
-                if (i > 0) {
-                    cout << "\b \b"; 
-                    i--;
-                }
-            } else {
-                password[i] = ch;
-                cout << '*'; 
-                i++;
-            }
-        }
-
-        password[i] = '\0'; 
+        string password;
+        cin >> password;
 
         ifstream readLoginFile("login.txt");
         if (readLoginFile) {
@@ -114,7 +94,7 @@ void login() {
             readLoginFile >> stored_username >> stored_password;
             readLoginFile.close();
 
-            if (login_username == stored_username && strcmp(password, stored_password.c_str()) == 0) {
+            if (login_username == stored_username && password == stored_password) {
                 cout << "\nLogin successful!\n";
                 system("pause");
                 system("cls");
@@ -124,6 +104,7 @@ void login() {
         cout << "\nLogin failed. Please try again.\n";
     }
 }
+
 
 void books::bookadd() {
     system("cls");
